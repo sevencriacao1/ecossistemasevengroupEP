@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6.5rem;
+    background: #0F0F10;
+    font-family: "Space Grotesk", sans-serif;
+    cursor: url("/assets/cursors/cursor-default-smaller.png") 1 1, default;
+  }
+
+  body {
+    margin: 0;
+    background: #0F0F10;
+    color: #FFFFFF;
+    font-family: "Space Grotesk", sans-serif;
+    font-synthesis: none;
+    text-rendering: geometricPrecision;
+    cursor: url("/assets/cursors/cursor-default-smaller.png") 1 1, default;
+    overflow-x: clip;
+  }
+
+  #root {
+    min-height: 100svh;
+    overflow-x: clip;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  [id] {
+    scroll-margin-top: clamp(5.5rem, 11svh, 7rem);
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  li,
+  blockquote,
+  td,
+  th,
+  input,
+  textarea,
+  [contenteditable="true"],
+  [contenteditable=""] {
+    cursor: url("/assets/cursors/cursor-text-smaller.png") 7 12, text;
+  }
+
+  a,
+  button,
+  [role="button"],
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  summary,
+  select,
+  label {
+    cursor: url("/assets/cursors/cursor-link-smaller.png") 5 2, pointer;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .arqo-heading,
+  .arqo-text-stable {
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+  }
+
+  .arqo-text-stable span {
+    line-height: inherit;
+    vertical-align: baseline;
+  }
+
+  .seven-entry-cursor {
+    cursor: url("/assets/cursors/cursor-default-smaller.png") 1 1, default;
+  }
+
+  .seven-entry-clickable,
+  .seven-entry-clickable * {
+    cursor: url("/assets/cursors/cursor-link-smaller.png") 5 2, pointer;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-surface-border rounded-full;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-text-dark;
+  }
+
+  .h-screen {
+    height: 100svh;
+  }
+
+  .min-h-screen {
+    min-height: 100svh;
+  }
+
+  .safe-page-x {
+    overflow-x: clip;
+  }
+}
+
+@keyframes arqoDashFlow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -72;
+  }
+}
+
+.arqo-dash-flow {
+  animation: arqoDashFlow 1.8s linear infinite;
+}
+
+@keyframes arqoCloudFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(var(--cloud-x, 8px), var(--cloud-y, -10px), 0);
+  }
+}
+
+.arqo-cloud-token {
+  animation: arqoCloudFloat var(--cloud-duration, 6s) ease-in-out var(--cloud-delay, 0s) infinite;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+@keyframes arqoClarityPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    opacity: 0.62;
+    transform: scale3d(1.24, 1.24, 1);
+  }
+}
+
+.arqo-clarity-pulse {
+  animation: arqoClarityPulse 4.8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes arqo-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes arqo-orbit-counter {
+  from {
+    transform: rotate(calc(-1 * var(--angle, 0deg)));
+  }
+  to {
+    transform: rotate(calc(-360deg - var(--angle, 0deg)));
+  }
+}
+
+.arqo-orbit-ring {
+  animation: arqo-orbit 24s linear infinite;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.arqo-orbit-item {
+  --orbit-radius: 5rem;
+  transform: rotate(var(--angle, 0deg)) translateX(var(--orbit-radius));
+  transform-origin: 0 0;
+}
+
+.arqo-orbit-counter {
+  animation: arqo-orbit-counter 24s linear infinite;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+@keyframes arqo-bridge-signal {
+  0%,
+  100% {
+    left: 0%;
+    opacity: 0.22;
+  }
+  18% {
+    opacity: 0.55;
+  }
+  50% {
+    left: 100%;
+    opacity: 0.55;
+  }
+  68% {
+    opacity: 0.18;
+  }
+}
+
+@media (min-width: 1024px) {
+  .arqo-orbit-item {
+    --orbit-radius: 5.15rem;
+  }
+}
+
+@media (min-width: 1366px) and (max-height: 980px) {
+  .arqo-concept-desktop-shell {
+    padding-top: clamp(4.25rem, 7svh, 5.6rem);
+    padding-bottom: clamp(1rem, 1.8svh, 1.6rem);
+  }
+
+  .arqo-concept-desktop-heading p:first-child {
+    margin-bottom: 0.55rem;
+  }
+
+  .arqo-concept-desktop-title {
+    font-size: clamp(2.25rem, 3.1vw, 3.05rem);
+  }
+
+  .arqo-concept-desktop-heading > p:last-child {
+    margin-top: 0.45rem;
+    line-height: 1.55;
+  }
+
+  .arqo-concept-flow {
+    margin-top: clamp(0.75rem, 1.6svh, 1.2rem);
+  }
+
+  .arqo-concept-logo-card {
+    width: clamp(16rem, 22vw, 22rem);
+    padding-top: clamp(0.55rem, 1svh, 0.85rem);
+    padding-bottom: clamp(0.55rem, 1svh, 0.85rem);
+  }
+
+  .arqo-concept-card-grid {
+    margin-top: clamp(1.75rem, 3.2svh, 2.65rem);
+  }
+
+  .arqo-concept-card-grid > svg {
+    height: clamp(2.4rem, 4svh, 3.2rem);
+  }
+
+  .arqo-concept-flip-card {
+    min-height: clamp(26rem, 46svh, 29rem);
+  }
+
+  .arqo-concept-final {
+    margin-top: clamp(0.75rem, 1.6svh, 1.35rem);
+  }
+}
+
+@media (max-width: 767px) {
+  html {
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    min-width: 320px;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  li,
+  button,
+  a,
+  span {
+    overflow-wrap: anywhere;
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  textarea,
+  select,
+  [contenteditable="true"],
+  [contenteditable=""] {
+    font-size: 16px;
+  }
+
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl,
+  .backdrop-blur-3xl,
+  .backdrop-blur-\[28px\],
+  .backdrop-blur-\[34px\] {
+    --tw-backdrop-blur: blur(12px);
+  }
+}
